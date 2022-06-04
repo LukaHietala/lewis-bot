@@ -1,5 +1,11 @@
 # lewis-bot
 
+## Prerequisites
+
+Create a application in Discord's developer portal. You need to add all the Intents and permissions.
+
+Then create a link in OAuth2 section and make sure that `bot` and `application.commands` are checked, otherwise the bot won't work correctly. (Make sure that the bot has the `ADMINISTRATOR` permission)
+
 ## Installation
 
 The official bot for Lewis Menelaws (TectTok).
