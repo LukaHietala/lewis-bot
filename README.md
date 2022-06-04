@@ -4,6 +4,7 @@
 
 The official bot for Lewis Menelaws (TectTok).
 You need to know the basics of programming before contributing. Otherwise, you probably will have many issues with the bot.
+
 To get started, you need to first install all the dependencies.
 
 ```bash
