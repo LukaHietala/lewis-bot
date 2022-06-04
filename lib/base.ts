@@ -18,3 +18,7 @@ export enum BaseErrors {
 export enum BaseColors {
     DEFAULT = '#4d8feb',
 }
+
+export enum BaseGuilds {
+    MAIN = '897666935708352582',
+}
