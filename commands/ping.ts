@@ -7,6 +7,6 @@ export = {
         .setName('ping')
         .setDescription('Replies with Pong!'),
     async execute(interaction: any, client: Client) {
-        interaction.reply('Pong!');
+        interaction.reply({ content: ' Pong!', ephemeral: true });
     },
 };
