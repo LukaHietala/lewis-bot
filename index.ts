@@ -9,7 +9,7 @@ dotenv.config();
 
 const { embedError } = require('./modules/error');
 
-const token = process.env.TOKEN;
+const token = process.env.TOKEN as string;
 // @ts-ignore
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
