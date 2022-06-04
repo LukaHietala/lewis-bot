@@ -2,7 +2,7 @@ import { Client, Permissions } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { Constants } from '../lib/constants';
 
-module.exports = {
+export = {
     data: new SlashCommandBuilder()
         .setName('clear')
         .setDescription('Clear large amounts of messages.')
@@ -18,7 +18,7 @@ module.exports = {
         const member = await guild!.members.fetch(interaction.user);
         if (!member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES))
             return interaction.reply({
-                content: 'You do not have permission purge messages.',
+                content: 'You do not have permission clear messages.',
                 ephemeral: true,
             });
         if (!amountMessagesToDelete) {
