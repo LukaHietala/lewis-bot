@@ -50,3 +50,10 @@ GUILD_ID=<guild_id>
 ```
 
 And now run `ts-node index.ts` to deploy and run the bot via REST API.
+
+## Most active contributors
+
+Founder/owner:
+LukaHietala (Pix.#0001) - https://github.com/LukaHietala
+
+D3FUZED (papernecklace#7776) - https://github.com/D3FUZED
