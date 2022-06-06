@@ -2,20 +2,20 @@
 
 ## Prerequisites
 
-Create an application in Discord's developer portal (https://discord.dev). You need to add all the Intents and permissions.
+Create an application in [Discord's developer portal](https://discord.dev). You need to add all the Intents and permissions.
 
 Then create a link in OAuth2 section and make sure that `bot` and `application.commands` are checked, otherwise the bot won't work correctly. (Make sure that the bot has the `ADMINISTRATOR` permission)
 
 Thing that you need to know before contributing:
 
--   Typescript
--   Node.js
--   Discord JS
+- Typescript
+- Node.js
+- Discord JS
 
 Not required, but good to know:
 
--   REST API
--   Mongoose
+- REST API
+- Mongoose
 
 ## Installation
 
@@ -54,6 +54,6 @@ And now run `ts-node index.ts` to deploy and run the bot via REST API.
 ## Most active contributors
 
 Founder/owner:
-LukaHietala (Pix.#0001) - https://github.com/LukaHietala
+LukaHietala (Pix.#0001) - [Github](https://github.com/LukaHietala)
 
-D3FUZED (papernecklace#7776) - https://github.com/D3FUZED
+D3FUZED (papernecklace#7776) - [Github](https://github.com/D3FUZED)
