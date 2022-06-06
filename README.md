@@ -42,5 +42,4 @@ CLIENT_ID=<client_id>
 GUILD_ID=<guild_id>
 ```
 
-And now run `ts-node deploy-commands.ts` to deploy the application commands via REST API.
-After that you can run the bot with `ts-node index.ts`
+And now run `ts-node index.ts` to deploy and run the bot via REST API.
