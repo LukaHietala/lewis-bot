@@ -16,7 +16,7 @@ export default (client: Client): void => {
             })
             .setTitle('Thanks for joining!')
             .setDescription(
-                `Welcome to the server! Use \`/role menu\` to get started. We would all love to get to know you much in ${Constants.Channels.WELCOME}!`,
+                `Welcome to the server! Use \`/role menu\` to get started. We would all love to get to know you in ${Constants.Channels.WELCOME}!`,
             );
         const channelToSend = member.guild.channels.cache.get(
             channel,
