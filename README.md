@@ -49,6 +49,8 @@ CLIENT_ID=<client_id>
 GUILD_ID=<guild_id>
 ```
 
+base.ts is the file to store all the channel, emoji, and role IDs.
+
 And now run `ts-node index.ts` to deploy and run the bot via REST API.
 
 ## Most active contributors
