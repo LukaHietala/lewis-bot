@@ -1,7 +1,5 @@
-import { Client, ClientUser, MessageEmbed } from 'discord.js';
+import { Client } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { Constants } from '../lib/constants';
-
 export = {
     data: new SlashCommandBuilder()
         .setName('dice')
