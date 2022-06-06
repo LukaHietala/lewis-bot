@@ -32,7 +32,7 @@ After that's done, you need to install Node.js, Typescript as a global module, a
 
 ## Usage
 
-First go ahead and create file called `.env`, that will hold all the base information for the bot.
+First rename the file called `.env.template` to `.env`, that will hold all the base information for the bot. You should keep this information private at all times.
 The file should look like this:
 
 ```env
