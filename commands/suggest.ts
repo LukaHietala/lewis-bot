@@ -26,7 +26,7 @@ export = {
         const user = interaction.user.id;
         const project = interaction.options.getString('project');
         const suggestion = interaction.options.getString('suggestion');
-        const suggestChannel = process.env.SUGGEST_CHANNEL;
+        const suggestChannel = Constants.Channels.SUGGESTIONS;
 
         if (user!.bot || user!.id === interaction.user.id) {
             return interaction.reply({
