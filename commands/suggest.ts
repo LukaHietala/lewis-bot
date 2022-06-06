@@ -12,7 +12,6 @@ export = {
                 .setDescription('What project is your suggestion about?')
                 .setRequired(true)
                 .addChoices(
-                    {name: 'Reddit Bot', value: 'Reddit Bot'},
                     {name: 'Discord Bot', value: 'Discord Bot'},
                     {name: 'Server', value: 'Server'}, 
                 )
