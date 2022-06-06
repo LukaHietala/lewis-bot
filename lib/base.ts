@@ -3,7 +3,7 @@
 export enum BaseEmojis {}
 
 export enum BaseChannels {
-    WELCOME = '905183354930995320',
+    WELCOME = '905183354930995320', //Channel ID of the welcome channel.
 }
 
 export enum BaseErrors {
