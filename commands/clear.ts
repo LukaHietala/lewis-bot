@@ -14,7 +14,7 @@ export = {
         ),
     async execute(interaction: any, client: Client) {
         const amountMessagesToDelete = interaction.options.getInteger('amount');
-        const guild = client.guilds.cache.get(Constants.Guilds.MAIN);
+        const guild = client.guilds.cache.get(interaction.guildId);
         const member = await guild!.members.fetch(interaction.user);
         if (!member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES))
             return interaction.reply({
