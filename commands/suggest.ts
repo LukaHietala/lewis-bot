@@ -11,9 +11,10 @@ export = {
                 .setName('project')
                 .setDescription('What project is your suggestion about?')
                 .setRequired(true)
-                .addChoices({
-                    name: 'Reddit Bot', value: 'Reddit Bot' //If needed, multiple projects can be added.
-                })
+                .addChoices(
+                    {name: 'Discord Bot', value: 'Discord Bot'},
+                    {name: 'Server', value: 'Server'}, 
+                )
         )
         .addStringOption((option) =>
             option
@@ -26,7 +27,7 @@ export = {
         const user = interaction.user.id;
         const project = interaction.options.getString('project');
         const suggestion = interaction.options.getString('suggestion');
-        const suggestChannel = process.env.SUGGEST_CHANNEL;
+        const suggestChannel = Constants.Channels.SUGGESTIONS;
 
         if (user!.bot || user!.id === interaction.user.id) {
             return interaction.reply({
@@ -49,7 +50,10 @@ export = {
                 { name: 'Suggested by:', value: `${interaction.user}`, inline: false },
             )
             .setTimestamp();
-        await interaction.reply('Your suggestion has been sent to the relevant dev team!');
+        await interaction.reply({
+            content: 'Your suggestion has been sent!',
+            ephemeral: true,
+        });
         await interaction.guild.channels.cache.get(suggestChannel).send({ embeds: [embed] });
     },
 };
