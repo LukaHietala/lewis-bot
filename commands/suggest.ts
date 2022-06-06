@@ -51,7 +51,10 @@ export = {
                 { name: 'Suggested by:', value: `${interaction.user}`, inline: false },
             )
             .setTimestamp();
-        await interaction.reply('Your suggestion has been sent to the relevant dev team!');
+        await interaction.reply({
+            content: 'Your suggestion has been sent!',
+            ephemeral: true,
+        });
         await interaction.guild.channels.cache.get(suggestChannel).send({ embeds: [embed] });
     },
 };
