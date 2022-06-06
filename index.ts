@@ -4,11 +4,14 @@ import events from './events/events';
 import { Collection } from 'discord.js';
 import dotenv from 'dotenv';
 import client from './modules/client';
+import { deployCommands } from './deploy-commands'
 
 dotenv.config();
 
 const { embedError } = require('./modules/error');
 
+const guildId = process.env.GUILD_ID as string;
+const clientId = process.env.CLIENT_ID as string;
 const token = process.env.TOKEN as string;
 // @ts-ignore
 client.commands = new Collection();
@@ -43,5 +46,7 @@ client.on('interactionCreate', async (interaction) => {
 });
 //Initialize the events
 events(client);
+//deploy commands.
+deployCommands(clientId, guildId, token);
 
 client.login(token);
