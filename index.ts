@@ -3,7 +3,7 @@ import path from 'path';
 import events from './events/events';
 import { Collection } from 'discord.js';
 import dotenv from 'dotenv';
-import client from './modules/client';
+import client from './structures/client';
 import { deployCommands } from './deploy-commands'
 
 dotenv.config();
