@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-Create a application in Discord's developer portal. You need to add all the Intents and permissions.
+Create an application in Discord's developer portal (https://discord.dev). You need to add all the Intents and permissions.
 
 Then create a link in OAuth2 section and make sure that `bot` and `application.commands` are checked, otherwise the bot won't work correctly. (Make sure that the bot has the `ADMINISTRATOR` permission)
 
@@ -29,6 +29,12 @@ npm install
 ```
 
 After that's done, you need to install Node.js, Typescript as a global module, and ts node for TypeScript.
+
+```bash
+npm install nodejs
+npm install typescript
+npm install ts-node
+```
 
 ## Usage
 
