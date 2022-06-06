@@ -31,10 +31,11 @@ npm install
 After that's done, you need to install Node.js, Typescript as a global module, and ts node for TypeScript.
 
 ```bash
-npm install nodejs
 npm install typescript
 npm install ts-node
 ```
+
+Install [node JS](https://nodejs.org/en/) here. Download the latest version.
 
 ## Usage
 
