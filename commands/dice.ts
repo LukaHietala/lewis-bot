@@ -11,7 +11,7 @@ export = {
                 .setRequired(true),
         ),
     async execute(interaction: any, client: Client) {
-		var ranNum = Math.floor(Math.random() * 6) + 1;
+		let ranNum = Math.floor(Math.random() * 6) + 1;
         const number = interaction.options.getNumber('number');
 
 		if (number == ranNum) {
