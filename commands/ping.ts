@@ -7,7 +7,6 @@ export = {
         .setName('ping')
         .setDescription('Replies with the bot and API ping!'),
     async execute(interaction: any, client: Client) {
-<<<<<<< HEAD
         interaction.reply({
             content: `${Constants['Emojis'].LOADING} Pinging...`
         });
@@ -33,13 +32,5 @@ export = {
             );
         await interaction.deleteReply();
         await interaction.channel.send({ embeds: [pingEmbed], ephemeral: true });
-=======
-
-        const msg = await interaction.channel.send('Done!');
-
-        const latency = msg.createdTimestamp - interaction.createdTimestamp;
-
-        await interaction.reply({ content: `**Bot Latency**: \`${latency}ms\`, **API Latency**: \`${Math.round(client.ws.ping)}ms\``, ephemeral: false });
->>>>>>> 1e9a3d1f98bae22133916b55570b2df928164049
     },
 };
