@@ -1,6 +1,9 @@
 // Base values:
 
-export enum BaseEmojis {}
+export enum BaseEmojis {
+    LOADING = '<a:loading_green_bar:983752163903807538>',
+    CONNECTION = '<:connection_excellent:983752023923109979>'
+}
 
 export enum BaseChannels {
     WELCOME = '905183354930995320', //Channel ID of the welcome channel.
