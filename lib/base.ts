@@ -7,7 +7,7 @@ export enum BaseEmojis {
 
 export enum BaseChannels {
     WELCOME = '905183354930995320', //Channel ID of the welcome channel.
-    SUGGESTIONS = '983448691224477796',
+    SUGGESTIONS = '983448691224477796', //Channel ID of the suggestion channel (output of suggest command)
 }
 
 export enum BaseErrors {
@@ -20,5 +20,5 @@ export enum BaseErrors {
 }
 
 export enum BaseColors {
-    DEFAULT = '#4d8feb',
+    DEFAULT = '#4d8feb', //HEX of the embed color
 }
