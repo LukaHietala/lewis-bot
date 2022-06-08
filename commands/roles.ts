@@ -1,4 +1,4 @@
-import { Client } from 'discord.js';
+import { Client, MessageSelectMenu, MessageActionRow } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { Constants } from '../lib/constants';
 
@@ -21,3 +21,4 @@ export = {
         });
     },
 };
+
