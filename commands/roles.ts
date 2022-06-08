@@ -5,20 +5,34 @@ import { Constants } from '../lib/constants';
 export = {
     data: new SlashCommandBuilder()
         .setName('role')
-        .setDescription('Sets your roles.')
-        .addSubcommand((subcommand) =>
-            subcommand.setName('menu').setDescription('Shows the role menu.'),
-        )
-        .addSubcommand((subcommand) =>
-            subcommand
-                .setName('info')
-                .setDescription('Information about the server roles.'),
-        ),
+        .setDescription('Sets your roles.'),
+
     async execute(interaction: any, client: Client) {
-        interaction.reply({
-            content: Constants.Errors.COMMAND_ON_DEVELOPMENT,
-            ephemeral: true,
-        });
+        const row = new MessageActionRow()
+			.addComponents(
+				new MessageSelectMenu()
+					.setCustomId('select')
+					.setPlaceholder('No roles selected. Select one!')
+					.addOptions([
+						{
+							label: '⌨️ Programmer',
+							value: 'Programmer',
+						},
+						{
+							label: '👩‍💻 Information Technology',
+							value: 'Information Technology',
+						},
+                        {
+							label: '📹 Content Creator',
+							value: 'Content Creator',
+						},
+                        {
+							label: '🎨 Designer',
+							value: 'Designer',
+						},
+					]),
+			);
+            await interaction.reply({ components: [row] });
     },
 };
 
