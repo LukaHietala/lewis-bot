@@ -1,5 +1,3 @@
-import { Client, Collection } from 'discord.js';
-
 import fs from 'fs';
 import path from 'path';
 import { REST } from '@discordjs/rest';

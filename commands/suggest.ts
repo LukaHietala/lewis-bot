@@ -1,4 +1,4 @@
-import { Client, ClientUser, MessageEmbed} from 'discord.js';
+import { MessageEmbed } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { Constants } from '../lib/constants';
 
@@ -22,7 +22,7 @@ export = {
                 .setDescription('What is your suggestion?')
                 .setRequired(true),
         ),
-    async execute(interaction: any, client: Client) {
+    async execute(interaction: any) {
 
         const user = interaction.user.id;
         const project = interaction.options.getString('project');

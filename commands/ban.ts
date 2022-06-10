@@ -35,7 +35,6 @@ module.exports = {
         const guild = client.guilds.cache.get(interaction.guildId);
         const user = interaction.options.getUser('user');
         let reason = interaction.options.getString('reason');
-        const banned = await client.users.fetch(user.id);
         if (user!.bot || user!.id === interaction.user.id) {
             return interaction.reply({
                 content: Constants['Errors'].NOT_VALID_USER,

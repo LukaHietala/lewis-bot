@@ -1,6 +1,5 @@
-import { Client, MessageSelectMenu, MessageActionRow } from 'discord.js';
+import { MessageSelectMenu, MessageActionRow } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { Constants } from '../lib/constants';
 export = {
     data: new SlashCommandBuilder()
         .setName('role')
@@ -13,7 +12,7 @@ export = {
                 .setName('info')
                 .setDescription('Information about the server roles.'),
         ),
-    async execute(interaction: any, client: Client) {
+    async execute(interaction: any) {
         const row = new MessageActionRow()
 			.addComponents(
 				new MessageSelectMenu()

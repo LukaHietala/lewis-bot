@@ -1,4 +1,3 @@
-import { Client } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 export = {
     data: new SlashCommandBuilder()
@@ -10,7 +9,7 @@ export = {
                 .setDescription('Number between 1 and 6.')
                 .setRequired(true),
         ),
-    async execute(interaction: any, client: Client) {
+    async execute(interaction: any) {
 		let ranNum = Math.floor(Math.random() * 6) + 1;
         const number = interaction.options.getNumber('number');
 
