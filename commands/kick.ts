@@ -24,7 +24,10 @@ module.exports = {
                 .setDescription('Reason for the kick.')
                 .setRequired(false),
         ),
-    async execute(interaction: CommandInteraction<'cached'>, client: Client) {
+    async execute(
+        interaction: CommandInteraction<'cached'>,
+        client: Client,
+    ): Promise<void> {
         if (
             !interaction.member?.permissions.has(Permissions.FLAGS.KICK_MEMBERS)
         ) {

@@ -16,7 +16,7 @@ export = {
                 .setName('info')
                 .setDescription('Information about the server roles.'),
         ),
-    async execute(interaction: CommandInteraction<'cached'>) {
+    async execute(interaction: CommandInteraction<'cached'>): Promise<void> {
         const row = new MessageActionRow().addComponents(
             new MessageSelectMenu()
                 .setCustomId('language')

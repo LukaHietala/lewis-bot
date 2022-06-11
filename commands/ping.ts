@@ -6,7 +6,10 @@ export = {
     data: new SlashCommandBuilder()
         .setName('ping')
         .setDescription('Replies with Pong!'),
-    async execute(interaction: CommandInteraction<'cached'>, client: Client) {
+    async execute(
+        interaction: CommandInteraction<'cached'>,
+        client: Client,
+    ): Promise<void> {
         interaction.reply({
             content: `${Constants['Emojis'].LOADING} Pinging...`,
         });

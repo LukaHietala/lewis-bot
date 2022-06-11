@@ -22,7 +22,7 @@ export = {
                 .setDescription('What is your suggestion?')
                 .setRequired(true),
         ),
-    async execute(interaction: any) {
+    async execute(interaction: any): Promise<void> {
         const user = interaction.user.id;
         const project = interaction.options.getString('project');
         const suggestion = interaction.options.getString('suggestion');

@@ -11,7 +11,10 @@ export = {
                 .setDescription('Amount of messages to delete.')
                 .setRequired(true),
         ),
-    async execute(interaction: CommandInteraction<'cached'>, client: Client) {
+    async execute(
+        interaction: CommandInteraction<'cached'>,
+        client: Client,
+    ): Promise<void> {
         const amountMessagesToDelete = interaction.options.getInteger('amount');
         const guild = client.guilds.cache.get(interaction.guildId);
         const member = await guild!.members.fetch(interaction.user);
