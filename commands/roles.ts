@@ -17,6 +17,7 @@ export = {
                 .setDescription('Information about the server roles.'),
         ),
     async execute(interaction: CommandInteraction<'cached'>): Promise<void> {
+        const command = interaction.options.getSubcommand();
         const row = new MessageActionRow().addComponents(
             new MessageSelectMenu()
                 .setCustomId('language')
@@ -84,10 +85,20 @@ export = {
                     },
                 ]),
         );
-        await interaction.reply({
-            components: [row, rowOther],
-            ephemeral: true,
-        });
+        if (command === 'menu') {
+            await interaction.reply({
+                components: [row, rowOther],
+                ephemeral: true,
+            });
+        }
+
+        if (command === 'info') {
+            await interaction.reply({
+                content:
+                    'This is a list of roles that can be assigned to a user. NOT COMPLETE.',
+                ephemeral: true,
+            });
+        }
 
         if (!interaction.isSelectMenu()) return;
         if (interaction.customId === 'language') {
