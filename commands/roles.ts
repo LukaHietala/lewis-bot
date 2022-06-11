@@ -1,4 +1,8 @@
-import { MessageSelectMenu, MessageActionRow } from 'discord.js';
+import {
+    MessageSelectMenu,
+    MessageActionRow,
+    CommandInteraction,
+} from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 export = {
     data: new SlashCommandBuilder()
@@ -12,7 +16,7 @@ export = {
                 .setName('info')
                 .setDescription('Information about the server roles.'),
         ),
-    async execute(interaction: any) {
+    async execute(interaction: CommandInteraction<'cached'>) {
         const row = new MessageActionRow().addComponents(
             new MessageSelectMenu()
                 .setCustomId('language')

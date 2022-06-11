@@ -1,8 +1,9 @@
 import {
     MessageEmbed,
-    BaseCommandInteraction,
     Client,
     Permissions,
+    CommandInteraction,
+    UserResolvable,
 } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { Constants } from '../lib/constants';
@@ -23,7 +24,7 @@ module.exports = {
                 .setDescription('Reason for the ban.')
                 .setRequired(false),
         ),
-    async execute(interaction: BaseCommandInteraction | any, client: Client) {
+    async execute(interaction: CommandInteraction<'cached'>, client: Client) {
         if (
             !interaction.member?.permissions.has(Permissions.FLAGS.BAN_MEMBERS)
         ) {
@@ -47,7 +48,7 @@ module.exports = {
         const embed = new MessageEmbed()
             .setColor(Constants.Colors.DEFAULT)
             .setTitle('You have been banned from the server.')
-            .setThumbnail(interaction.user.avatarURL())
+            .setThumbnail(interaction.user.avatarURL()!)
             .setDescription('Ban appeals are coming later.')
             .addFields(
                 {
@@ -58,10 +59,10 @@ module.exports = {
                 { name: 'Reason', value: `${reason}`, inline: true },
             )
             .setTimestamp();
-        await user.send({ embeds: [embed] });
-        guild?.members.ban(user, { reason: reason });
+        await user!.send({ embeds: [embed] });
+        guild?.members.ban(user as UserResolvable, { reason: reason });
         await interaction.reply({
-            content: `${user.tag} has been banned.`,
+            content: `${user!.tag} has been banned.`,
             ephemeral: true,
         });
     },

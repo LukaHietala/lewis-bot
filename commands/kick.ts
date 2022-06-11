@@ -1,4 +1,10 @@
-import { MessageEmbed, Client, Permissions } from 'discord.js';
+import {
+    MessageEmbed,
+    Client,
+    Permissions,
+    CommandInteraction,
+    UserResolvable,
+} from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { Constants } from '../lib/constants';
 
@@ -18,7 +24,7 @@ module.exports = {
                 .setDescription('Reason for the kick.')
                 .setRequired(false),
         ),
-    async execute(interaction: any, client: Client) {
+    async execute(interaction: CommandInteraction<'cached'>, client: Client) {
         if (
             !interaction.member?.permissions.has(Permissions.FLAGS.KICK_MEMBERS)
         ) {
@@ -42,7 +48,7 @@ module.exports = {
         const embed = new MessageEmbed()
             .setColor(Constants.Colors.DEFAULT)
             .setTitle('You have been kicked from the server.')
-            .setThumbnail(interaction.user.avatarURL())
+            .setThumbnail(interaction.user.avatarURL()!)
             .addFields(
                 {
                     name: 'User',
@@ -52,10 +58,10 @@ module.exports = {
                 { name: 'Reason', value: `${reason}`, inline: true },
             )
             .setTimestamp();
-        await user.send({ embeds: [embed] });
-        guild?.members.kick(user);
+        await user!.send({ embeds: [embed] });
+        guild?.members.kick(user as UserResolvable);
         await interaction.reply({
-            content: `${user.tag} has been kicked.`,
+            content: `${user!.tag} has been kicked.`,
             ephemeral: true,
         });
     },

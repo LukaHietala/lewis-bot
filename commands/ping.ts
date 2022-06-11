@@ -1,4 +1,4 @@
-import { Client, MessageEmbed } from 'discord.js';
+import { Client, CommandInteraction, MessageEmbed } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { Constants } from '../lib/constants';
 
@@ -6,7 +6,7 @@ export = {
     data: new SlashCommandBuilder()
         .setName('ping')
         .setDescription('Replies with Pong!'),
-    async execute(interaction: any, client: Client) {
+    async execute(interaction: CommandInteraction<'cached'>, client: Client) {
         interaction.reply({
             content: `${Constants['Emojis'].LOADING} Pinging...`,
         });
@@ -40,9 +40,8 @@ export = {
                 },
             );
         await interaction.deleteReply();
-        await interaction.channel.send({
+        await interaction.channel!.send({
             embeds: [pingEmbed],
-            ephemeral: true,
         });
     },
 };

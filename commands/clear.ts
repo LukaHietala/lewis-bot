@@ -1,4 +1,4 @@
-import { Client, Permissions } from 'discord.js';
+import { Client, CommandInteraction, Permissions } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 
 export = {
@@ -11,7 +11,7 @@ export = {
                 .setDescription('Amount of messages to delete.')
                 .setRequired(true),
         ),
-    async execute(interaction: any, client: Client) {
+    async execute(interaction: CommandInteraction<'cached'>, client: Client) {
         const amountMessagesToDelete = interaction.options.getInteger('amount');
         const guild = client.guilds.cache.get(interaction.guildId);
         const member = await guild!.members.fetch(interaction.user);
@@ -38,7 +38,7 @@ export = {
                 ephemeral: true,
             });
         }
-        const { size } = await interaction.channel.bulkDelete(
+        const { size } = await interaction.channel!.bulkDelete(
             amountMessagesToDelete,
             true,
         );
