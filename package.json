@@ -2,7 +2,7 @@
 	"name": "lewis-bot",
 	"version": "1.0.0",
 	"description": "The official bot for Lewis Menelaws (TectTok).",
-	"main": "index.js",
+	"main": "index.ts",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
