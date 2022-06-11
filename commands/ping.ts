@@ -10,6 +10,7 @@ export = {
         interaction.reply({
             content: `${Constants['Emojis'].LOADING} Pinging...`
         });
+        const ms = require('ms');
         const pingEmbed = new MessageEmbed()
             .setColor(Constants.Colors.DEFAULT)
             .setAuthor({ name: 'Ping!' })
@@ -29,6 +30,11 @@ export = {
                         '```> ' + `${Math.round(client.ws.ping)}.00ms` + '```',
                     inline: true,
                 },
+                {
+                    name: `Uptime`,
+                    value: '```> ' + `${ms(client.uptime, { long: false })}` + '```',
+                    inline: true,
+                }
             );
         await interaction.deleteReply();
         await interaction.channel.send({ embeds: [pingEmbed], ephemeral: true });
