@@ -4,7 +4,7 @@ import events from './events/events';
 import { Collection } from 'discord.js';
 import dotenv from 'dotenv';
 import client from './structures/client';
-import { deployCommands } from './deploy-commands'
+import { deployCommands } from './deploy-commands';
 
 dotenv.config();
 

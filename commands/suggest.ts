@@ -12,9 +12,9 @@ export = {
                 .setDescription('What project is your suggestion about?')
                 .setRequired(true)
                 .addChoices(
-                    {name: 'Discord Bot', value: 'Discord Bot'},
-                    {name: 'Server', value: 'Server'}, 
-                )
+                    { name: 'Discord Bot', value: 'Discord Bot' },
+                    { name: 'Server', value: 'Server' },
+                ),
         )
         .addStringOption((option) =>
             option
@@ -23,7 +23,6 @@ export = {
                 .setRequired(true),
         ),
     async execute(interaction: any) {
-
         const user = interaction.user.id;
         const project = interaction.options.getString('project');
         const suggestion = interaction.options.getString('suggestion');
@@ -47,13 +46,19 @@ export = {
                     inline: true,
                 },
                 { name: 'Suggestion', value: `${suggestion}`, inline: true },
-                { name: 'Suggested by:', value: `${interaction.user}`, inline: false },
+                {
+                    name: 'Suggested by:',
+                    value: `${interaction.user}`,
+                    inline: false,
+                },
             )
             .setTimestamp();
         await interaction.reply({
             content: 'Your suggestion has been sent!',
             ephemeral: true,
         });
-        await interaction.guild.channels.cache.get(suggestChannel).send({ embeds: [embed] });
+        await interaction.guild.channels.cache
+            .get(suggestChannel)
+            .send({ embeds: [embed] });
     },
 };

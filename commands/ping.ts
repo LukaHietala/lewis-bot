@@ -8,7 +8,7 @@ export = {
         .setDescription('Replies with Pong!'),
     async execute(interaction: any, client: Client) {
         interaction.reply({
-            content: `${Constants['Emojis'].LOADING} Pinging...`
+            content: `${Constants['Emojis'].LOADING} Pinging...`,
         });
         const ms = require('ms');
         const pingEmbed = new MessageEmbed()
@@ -32,11 +32,17 @@ export = {
                 },
                 {
                     name: `Uptime`,
-                    value: '```> ' + `${ms(client.uptime, { long: false })}` + '```',
+                    value:
+                        '```> ' +
+                        `${ms(client.uptime, { long: false })}` +
+                        '```',
                     inline: true,
-                }
+                },
             );
         await interaction.deleteReply();
-        await interaction.channel.send({ embeds: [pingEmbed], ephemeral: true });
+        await interaction.channel.send({
+            embeds: [pingEmbed],
+            ephemeral: true,
+        });
     },
 };
