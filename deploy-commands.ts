@@ -4,11 +4,11 @@ import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v10';
 import dotenv from 'dotenv';
 
-export function deployCommands(
+export async function deployCommands(
     clientId: string,
     guildId: string,
     token: string,
-): void {
+): Promise<void> {
     //Start refreshing the application commands.
     console.log('Started refreshing application (/) commands...');
     const commands: object[] = [];
@@ -27,13 +27,17 @@ export function deployCommands(
 
     //We're using the REST to register application commands.
     const rest = new REST({ version: '10' });
-    rest.setToken(token as string);
-    rest.put(
-        Routes.applicationGuildCommands(clientId as string, guildId as string),
-        {
-            body: commands,
-        },
-    )
+    await rest.setToken(token as string);
+    await rest
+        .put(
+            Routes.applicationGuildCommands(
+                clientId as string,
+                guildId as string,
+            ),
+            {
+                body: commands,
+            },
+        )
         .then(() =>
             console.log('Successfully registered application commands.'),
         )

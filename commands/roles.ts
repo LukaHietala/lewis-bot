@@ -84,7 +84,10 @@ export = {
                     },
                 ]),
         );
-        await interaction.reply({ components: [row, rowOther] });
+        await interaction.reply({
+            components: [row, rowOther],
+            ephemeral: true,
+        });
 
         if (!interaction.isSelectMenu()) return;
         if (interaction.customId === 'language') {
