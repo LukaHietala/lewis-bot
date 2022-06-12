@@ -21,6 +21,7 @@ module.exports = {
     execute(interaction) {
         return __awaiter(this, void 0, void 0, function* () {
             const command = interaction.options.getSubcommand();
+            //const channel = (interaction.channel) as TextChannel;
             const row = new discord_js_1.MessageActionRow().addComponents(new discord_js_1.MessageSelectMenu()
                 .setCustomId('language')
                 .setPlaceholder('Select a programming language.')
@@ -93,26 +94,6 @@ module.exports = {
                 yield interaction.reply({
                     content: 'This is a list of roles that can be assigned to a user. NOT COMPLETE.',
                     ephemeral: true,
-                });
-            }
-            if (!interaction.isSelectMenu())
-                return;
-            if (interaction.customId === 'language') {
-                const wait = require('node:timers/promises').setTimeout;
-                yield interaction.deferUpdate();
-                yield wait(500);
-                yield interaction.editReply({
-                    content: `The role ${interaction.values} was selected.`,
-                    components: [],
-                });
-            }
-            if (interaction.customId === 'other') {
-                const wait = require('node:timers/promises').setTimeout;
-                yield interaction.deferUpdate();
-                yield wait(500);
-                yield interaction.editReply({
-                    content: `The role ${interaction.values} was selected.`,
-                    components: [],
                 });
             }
         });

@@ -18,6 +18,8 @@ export = {
         ),
     async execute(interaction: CommandInteraction<'cached'>): Promise<void> {
         const command = interaction.options.getSubcommand();
+        //const channel = (interaction.channel) as TextChannel;
+
         const row = new MessageActionRow().addComponents(
             new MessageSelectMenu()
                 .setCustomId('language')
@@ -97,26 +99,6 @@ export = {
                 content:
                     'This is a list of roles that can be assigned to a user. NOT COMPLETE.',
                 ephemeral: true,
-            });
-        }
-
-        if (!interaction.isSelectMenu()) return;
-        if (interaction.customId === 'language') {
-            const wait = require('node:timers/promises').setTimeout;
-            await interaction.deferUpdate();
-            await wait(500);
-            await interaction.editReply({
-                content: `The role ${interaction.values} was selected.`,
-                components: [],
-            });
-        }
-        if (interaction.customId === 'other') {
-            const wait = require('node:timers/promises').setTimeout;
-            await interaction.deferUpdate();
-            await wait(500);
-            await interaction.editReply({
-                content: `The role ${interaction.values} was selected.`,
-                components: [],
             });
         }
     },
