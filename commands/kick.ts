@@ -8,7 +8,7 @@ import {
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { Constants } from '../lib/constants';
 
-module.exports = {
+export = {
     data: new SlashCommandBuilder()
         .setName('kick')
         .setDescription('Kick a user from the server.')

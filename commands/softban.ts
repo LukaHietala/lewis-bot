@@ -1,29 +1,24 @@
+import { SlashCommandBuilder } from '@discordjs/builders';
 import {
-    MessageEmbed,
     Client,
-    Permissions,
     CommandInteraction,
+    MessageEmbed,
+    Permissions,
     UserResolvable,
 } from 'discord.js';
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { Constants } from '../lib/constants';
 
+import { Constants } from '../lib/constants';
 export = {
     data: new SlashCommandBuilder()
-        .setName('ban')
-        .setDescription('Ban a user from the server.')
+        .setName('softban')
+        .setDescription('Softbans a chosen user.')
         .addUserOption((option) =>
             option
                 .setName('user')
                 .setDescription('Select the user to ban.')
                 .setRequired(true),
-        )
-        .addStringOption((option) =>
-            option
-                .setName('reason')
-                .setDescription('Reason for the ban.')
-                .setRequired(false),
         ),
+
     async execute(
         interaction: CommandInteraction<'cached'>,
         client: Client,
@@ -38,35 +33,32 @@ export = {
         }
         const guild = client.guilds.cache.get(interaction.guildId);
         const user = interaction.options.getUser('user');
-        let reason = interaction.options.getString('reason');
+
         if (user!.bot || user!.id === interaction.user.id) {
             return interaction.reply({
                 content: Constants['Errors'].NOT_VALID_USER,
                 ephemeral: true,
             });
         }
-        if (reason === null) {
-            reason = 'No reason provided.';
-        }
+
         const embed = new MessageEmbed()
             .setColor(Constants.Colors.DEFAULT)
-            .setTitle('You have been banned from the server.')
+            .setTitle('You have been softbanned from the server.')
             .setThumbnail(interaction.user.avatarURL()!)
-            .setDescription('Ban appeals are coming later.')
-            .addFields(
-                {
-                    name: 'User',
-                    value: `You were banned by ${interaction.user.tag}`,
-                    inline: true,
-                },
-                { name: 'Reason', value: `${reason}`, inline: true },
-            )
+            .setDescription('You can join the server again.')
+            .addFields({
+                name: 'User',
+                value: `You were softbanned by ${interaction.user.tag}`,
+                inline: true,
+            })
             .setTimestamp();
         await user!.send({ embeds: [embed] });
-        guild?.members.ban(user as UserResolvable, { reason: reason });
+        guild?.members.ban(user as UserResolvable);
         await interaction.reply({
-            content: `${user!.tag} has been banned.`,
+            content: `${user!.tag} has been softbanned.`,
             ephemeral: true,
         });
+
+        await guild?.members.unban(user!.id);
     },
 };
