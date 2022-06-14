@@ -14,8 +14,9 @@ export = {
             .setColor(Constants.Colors.DEFAULT)
             .setAuthor({
                 name: 'Information about the bot.',
-                iconURL: client.user!.avatarURL()?.toString(),
+                iconURL: client.user!.avatarURL()!,
             })
+            .setThumbnail(client.user!.avatarURL()!)
             .setDescription(
                 `More information coming soon!\n\n Github: https://github.com/LukaHietala/lewis-bot`,
             );
