@@ -1,13 +1,27 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { CommandInteraction } from 'discord.js';
+import { Client, CommandInteraction, MessageEmbed } from 'discord.js';
+import { Constants } from '../lib/constants';
 
 export = {
     data: new SlashCommandBuilder()
         .setName('about')
         .setDescription('Information about the bot.'),
-    async execute(interaction: CommandInteraction<'cached'>): Promise<void> {
+    async execute(
+        interaction: CommandInteraction<'cached'>,
+        client: Client,
+    ): Promise<void> {
+        const embed = new MessageEmbed()
+            .setColor(Constants.Colors.DEFAULT)
+            .setAuthor({
+                name: 'Information about the bot.',
+                iconURL: client.user!.avatarURL()?.toString(),
+            })
+            .setDescription(
+                `More information coming soon!\n\n Github: https://github.com/LukaHietala/lewis-bot`,
+            );
+
         interaction.reply({
-            content: 'Command is still in development.',
+            embeds: [embed],
             ephemeral: true,
         });
     },

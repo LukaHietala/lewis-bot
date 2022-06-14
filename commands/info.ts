@@ -39,6 +39,9 @@ export = {
                     user as UserResolvable,
                 );
                 let avatarUrl: string = `${user!.avatarURL({ format: 'png' })}`;
+                if (null || 'null') {
+                    avatarUrl = `https://images-ext-2.discordapp.net/external/GyQicPLz_zQO15bOMtiGTtC4Kud7JjQbs1Ecuz7RrtU/https/cdn.discordapp.com/embed/avatars/1.png`;
+                }
                 const row = new MessageActionRow().addComponents(
                     new MessageButton()
                         .setLabel('Avatar (png)')
@@ -79,6 +82,7 @@ export = {
                     'Use External Stickers, ',
                     'Send Messages In Threads, ',
                     'Start Embedded Activities, ',
+                    'Start Embedded Activities',
                 ];
 
                 var expStr = uselessWords.join('\\b|\\b');
@@ -103,7 +107,7 @@ export = {
                         },
                         {
                             name: `Roles (${member?.roles.cache.size - 1})`,
-                            value: roles.toString() || 'None',
+                            value: roles.toString() || 'None.',
                             inline: false,
                         },
                         {
@@ -120,7 +124,7 @@ export = {
                                     )
                                     .trim()
                                     .replace(new RegExp(expStr, 'gi'), '')
-                                    .replace(/ +/g, ' ') || 'None',
+                                    .replace(/ +/g, ' ') || 'None.',
                             inline: false,
                         },
                         {
@@ -135,6 +139,11 @@ export = {
                         },
                     )
                     .setFooter(`User ID: ${user?.id}`);
+                if (member?.user?.bot) {
+                    embed.setDescription(
+                        'This user is a Discord application. (Discord bot)',
+                    );
+                }
                 interaction.reply({
                     embeds: [embed],
                     ephemeral: true,
@@ -145,9 +154,10 @@ export = {
                 const server = interaction.guild;
                 const embed2 = new MessageEmbed()
                     .setColor(Constants.Colors.DEFAULT)
+                    .setThumbnail(server!.iconURL()!)
                     .setAuthor({
                         name: `Information about ${server!.name}`,
-                        iconURL: server!.iconURL()?.toString(),
+                        iconURL: server!.iconURL()!,
                     })
                     .setDescription(
                         `Server ID: ${server!.id}\nServer's Owner: <@${
@@ -162,8 +172,16 @@ export = {
                             inline: false,
                         },
                         {
+                            name: `Server Roles (${server?.roles.cache.size})`,
+                            value:
+                                server?.roles.cache
+                                    .map((role) => role.toString())
+                                    .toString() || 'None.',
+                            inline: false,
+                        },
+                        {
                             name: 'Member Count',
-                            value: server!.memberCount,
+                            value: server!.memberCount.toString(),
                             inline: false,
                         },
                     );
