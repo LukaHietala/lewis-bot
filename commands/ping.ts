@@ -14,6 +14,7 @@ export = {
             content: `${Constants['Emojis'].LOADING} Pinging...`,
         });
         const ms = require('ms');
+        const ping = Date.now() - interaction.createdTimestamp;
         const pingEmbed = new MessageEmbed()
             .setColor(Constants.Colors.DEFAULT)
             .setAuthor({ name: 'Ping!' })
@@ -23,7 +24,7 @@ export = {
                     name: `${Constants['Emojis'].CONNECTION} Client Ping`,
                     value:
                         '```> ' +
-                        `${Date.now() - interaction.createdTimestamp}.00ms` +
+                        `${ping.toString().replace('-', '')}.00ms` +
                         '```',
                     inline: true,
                 },
