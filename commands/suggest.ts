@@ -1,4 +1,13 @@
-import { MessageEmbed } from 'discord.js';
+import {
+    Modal,
+    MessageActionRow,
+    TextInputComponent,
+    MessageActionRowComponent,
+    MessageActionRowComponentResolvable,
+    CommandInteraction,
+    MessageEmbed,
+    Client,
+} from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { Constants } from '../lib/constants';
 
@@ -15,50 +24,69 @@ export = {
                     { name: 'Discord Bot', value: 'Discord Bot' },
                     { name: 'Server', value: 'Server' },
                 ),
-        )
-        .addStringOption((option) =>
-            option
-                .setName('suggestion')
-                .setDescription('What is your suggestion?')
-                .setRequired(true),
         ),
-    async execute(interaction: any): Promise<void> {
-        const user = interaction.user.id;
+    async execute(
+        interaction: CommandInteraction<'cached'>,
+        client: Client,
+    ): Promise<void> {
         const project = interaction.options.getString('project');
-        const suggestion = interaction.options.getString('suggestion');
         const suggestChannel = Constants.Channels.SUGGESTIONS;
+        if (!interaction.isCommand()) return;
+        const modal = new Modal()
+            .setCustomId('suggestionModal')
+            .setTitle('Suggestion');
+        const suggestionInput = new TextInputComponent()
+            .setCustomId('suggestionInput')
+            .setLabel('Your suggestion')
+            .setStyle('PARAGRAPH')
+            .setRequired(true)
+            .setMinLength(1);
+        const otherInput = new TextInputComponent()
+            .setCustomId('otherInput')
+            .setLabel('Any other information you want to share?')
+            .setStyle('PARAGRAPH')
+            .setMinLength(1)
+            .setRequired(false);
+        const firstActionRow =
+            new MessageActionRow<MessageActionRowComponent>().addComponents(
+                suggestionInput as MessageActionRowComponentResolvable,
+            );
+        const secondActionRow =
+            new MessageActionRow<MessageActionRowComponent>().addComponents(
+                otherInput as MessageActionRowComponentResolvable,
+            );
+        //@ts-ignore
+        modal.addComponents(firstActionRow, secondActionRow);
+        await interaction.showModal(modal);
 
-        if (user!.bot || user!.id === interaction.user.id) {
-            return interaction.reply({
-                content: Constants['Errors'].NOT_VALID_USER,
-                ephemeral: true,
+        if (!interaction.isModalSubmit()) return;
+
+        if (interaction.customId === 'suggestionModal') {
+            await interaction.reply({
+                content: 'Your submission was recieved successfully!',
             });
         }
 
+        const suggestion =
+            interaction.fields.getTextInputValue('suggestionInput');
+        const other = interaction.fields.getTextInputValue('otherInput');
+
+        console.log(other, suggestion);
         const embed = new MessageEmbed()
             .setColor(Constants.Colors.DEFAULT)
-            .setTitle('New Suggestion')
-            .setThumbnail(interaction.user.avatarURL())
+            .setAuthor({
+                name: `Suggestion from ${interaction.user.tag}`,
+                iconURL: interaction.user.displayAvatarURL(),
+            })
+            .setThumbnail(interaction.user.displayAvatarURL())
+            .setDescription(`Project: ${project}`)
             .addFields(
-                {
-                    name: 'Project',
-                    value: `${project}`,
-                    inline: true,
-                },
-                { name: 'Suggestion', value: `${suggestion}`, inline: true },
-                {
-                    name: 'Suggested by:',
-                    value: `${interaction.user}`,
-                    inline: false,
-                },
+                { name: 'Suggestion', value: suggestion },
+                { name: 'Other', value: other },
             )
             .setTimestamp();
-        await interaction.reply({
-            content: 'Your suggestion has been sent!',
-            ephemeral: true,
-        });
-        await interaction.guild.channels.cache
-            .get(suggestChannel)
-            .send({ embeds: [embed] });
+        const channel = client.channels.cache.get(suggestChannel);
+        //@ts-ignore
+        channel.send({ embeds: [embed] });
     },
 };
