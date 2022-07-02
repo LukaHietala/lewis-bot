@@ -6,12 +6,6 @@
         "node": ">=16.0.0"
     },
     "main": "index.ts",
-    "scripts": {
-        "start": "ts-node index.ts",
-        "build": "tsc",
-        "build:watch": "tsc -w",
-        "start:prod": "node dist/index.js"
-    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/LukaHietala/lewis-bot.git"
