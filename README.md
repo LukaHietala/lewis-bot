@@ -8,14 +8,14 @@ Then create a link in OAuth2 section and make sure that `bot` and `application.c
 
 Thing that you need to know before contributing:
 
-- Typescript
-- Node.js
-- Discord JS
+-   Typescript
+-   Node.js
+-   Discord JS
 
 Not required, but good to know:
 
-- REST API
-- Mongoose
+-   REST API
+-   Mongoose
 
 ## Installation
 

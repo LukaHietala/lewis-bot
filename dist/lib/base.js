@@ -1,7 +1,7 @@
 "use strict";
 // Base values:
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BaseColors = exports.BaseErrors = exports.BaseChannels = exports.BaseEmojis = void 0;
+exports.BaseClient = exports.BaseColors = exports.BaseErrors = exports.BaseChannels = exports.BaseEmojis = void 0;
 var BaseEmojis;
 (function (BaseEmojis) {
     BaseEmojis["LOADING"] = "<a:loading_green_bar:983752163903807538>";
@@ -10,7 +10,7 @@ var BaseEmojis;
 var BaseChannels;
 (function (BaseChannels) {
     BaseChannels["WELCOME"] = "905183354930995320";
-    BaseChannels["SUGGESTIONS"] = "983448691224477796";
+    BaseChannels["SUGGESTIONS"] = "985554479405490216";
 })(BaseChannels = exports.BaseChannels || (exports.BaseChannels = {}));
 var BaseErrors;
 (function (BaseErrors) {
@@ -25,3 +25,7 @@ var BaseColors;
 (function (BaseColors) {
     BaseColors["DEFAULT"] = "#4d8feb";
 })(BaseColors = exports.BaseColors || (exports.BaseColors = {}));
+var BaseClient;
+(function (BaseClient) {
+    BaseClient["VERSION"] = "1.0.0";
+})(BaseClient = exports.BaseClient || (exports.BaseClient = {}));

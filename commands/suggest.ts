@@ -14,7 +14,7 @@ import { Constants } from '../lib/constants';
 export = {
     data: new SlashCommandBuilder()
         .setName('suggest')
-        .setDescription('Lets you make a suggestion to the relevant dev!')
+        .setDescription('Create a suggestion.')
         .addStringOption((option) =>
             option
                 .setName('project')

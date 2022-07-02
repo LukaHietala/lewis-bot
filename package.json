@@ -4,7 +4,10 @@
 	"description": "The official bot for Lewis Menelaws (TectTok).",
 	"main": "index.ts",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"start": "ts-node index.ts",
+		"build": "tsc",
+		"build:watch": "tsc -w",
+		"start:prod": "node dist/index.js"
 	},
 	"repository": {
 		"type": "git",
@@ -23,6 +26,7 @@
 		"discord-api-types": "^0.33.3",
 		"discord.js": "^13.7.0",
 		"dotenv": "^16.0.1",
+		"mongoose": "^6.3.8",
 		"ms": "^2.1.3"
 	}
 }

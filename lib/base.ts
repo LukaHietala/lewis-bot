@@ -22,3 +22,7 @@ export enum BaseErrors {
 export enum BaseColors {
     DEFAULT = '#4d8feb',
 }
+
+export enum BaseClient {
+    VERSION = '1.0.0',
+}

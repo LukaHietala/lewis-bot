@@ -86,6 +86,20 @@ export = {
                 ];
 
                 var expStr = uselessWords.join('\\b|\\b');
+
+                const devices = member.presence?.clientStatus || 'No devices';
+                const getDevices = () => {
+                    // @ts-ignore
+                    const entries = Object.entries(devices)
+                        .map(
+                            (value) =>
+                                `${value[0].toUpperCase()}${value[0].slice(1)}`,
+                        )
+                        .join('\n');
+                    //return `Device: ${entries}` || 'No devices online';
+                    return 'Device: ' + 'undefined' || 'No devices online';
+                };
+
                 const embed = new MessageEmbed()
                     .setColor(Constants.Colors.DEFAULT)
                     .setAuthor({
@@ -136,6 +150,17 @@ export = {
                             name: 'Server nickname',
                             value: member?.nickname || 'None.',
                             inline: false,
+                        },
+                        {
+                            name: 'Presence:',
+                            value: `Status: ${
+                                member.presence?.status
+                            }\nPlaying ${
+                                member.presence?.activities[0]?.name || 'None.'
+                            } \n Devices logged in: ${
+                                //Object.entries(devices).length
+                                String('undefined')
+                            }\n ${getDevices()}`,
                         },
                     )
                     .setFooter(`User ID: ${user?.id}`);
