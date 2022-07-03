@@ -15,7 +15,7 @@ export async function deployCommands(
     const commandsPath = path.join(__dirname, 'commands');
     const commandFiles = fs
         .readdirSync(commandsPath)
-        .filter((file: string) => file.endsWith('.ts' || '.js'));
+        .filter((file: string) => file.endsWith('.ts' && '.js'));
     dotenv.config();
 
     //Push the commands to Discord API.
