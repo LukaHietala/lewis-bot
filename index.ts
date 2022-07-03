@@ -41,7 +41,9 @@ client.on('interactionCreate', async (interaction) => {
     }
 
     console.log(
-        `${interaction.user.tag} used command ${interaction.commandName}`,
+        `User ${interaction.user.tag} executed command ${command.name} in ${
+            interaction.channel
+        }. Type ${interaction.type as string}`,
     );
 });
 //Initialize the events

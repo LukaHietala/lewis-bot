@@ -40,7 +40,7 @@ client_1.default.on('interactionCreate', async (interaction) => {
     catch (error) {
         embedError(error, interaction);
     }
-    console.log(`${interaction.user.tag} used command ${interaction.commandName}`);
+    console.log(`User ${interaction.user.tag} executed command ${command.name} in ${interaction.channel}. Type ${interaction.type}`);
 });
 //Initialize the events
 (0, events_1.default)(client_1.default);
