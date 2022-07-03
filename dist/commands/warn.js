@@ -88,7 +88,7 @@ module.exports = {
                     userId: user.id,
                     guildId: interaction.guild.id,
                 });
-                let description = `Warns:`;
+                let description = `Warns:\n`;
                 for (const warning of warningsList) {
                     description += `ID: ${warning.id}\nReason: ${warning.reason}\n`;
                     description += `Added by <@${warning.staffId}>\n`;
